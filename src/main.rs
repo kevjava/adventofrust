@@ -45,12 +45,15 @@ fn get_sum(group: Vec<&str>) -> i32  {
 
 /// Day 1 of Advent of Code 2022.
 fn main() {
+    // Get input file contents, separated by newlines.
     let input_file = open_file("input.txt")
         .expect("Couldn't open input file");
     let contents = split_lines(&input_file);
 
+    // Get groups of lines, separated by a blank line.
     let groups : Vec<Vec<&str>> = get_groups(contents);
 
+    // Sum up all the groups, put them in a list, sorted in descending order.
     let mut list_of_sums: Vec<i32> = Vec::new();
     for group in groups {
         let sum : i32 = get_sum(group);
@@ -58,9 +61,9 @@ fn main() {
     }
     list_of_sums.sort_by( |a,b| { b.cmp(a) }); // Reverse sort.
 
-    // for sum in &list_of_sums { print!("{sum} ")}
+    // The biggest sum is the first in the vec. The [0..3] gets the first three.
     let biggest_sum: i32 = list_of_sums[0];
-    let top_3_sum: i32 = list_of_sums[0..3].to_vec().iter().sum();
+    let top_3_sum: i32 = list_of_sums[0..3].iter().sum();
 
     println!("Biggest sum: {biggest_sum}");
     println!("Sum of top three: {top_3_sum}");
