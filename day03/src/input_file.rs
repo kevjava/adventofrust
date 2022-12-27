@@ -1,9 +1,8 @@
 //! Reads input files for Advent of Code projects. 
 //! Utility class.
 
-use std::{fs};
+use std::{fs, fmt};
 
-#[derive(Debug)]
 pub struct InputFile {
     path: String,
 }
@@ -32,5 +31,13 @@ impl InputFile {
                 Err(error.to_string())
             }
         }
+    }
+}
+
+impl fmt::Debug for InputFile {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("InputFile")
+            .field("path", &self.path)
+            .finish()
     }
 }
