@@ -1,9 +1,8 @@
-use std::{collections::HashSet};
 
+use std::collections::HashSet;
 
+use crate::priority;
 
-
-const PRIORITIES : &str = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 #[derive(Debug)]
 pub struct Rucksack {
@@ -24,11 +23,11 @@ impl Rucksack {
 
     fn split_items(items: &String) -> (String, String) {
         let len = items.len();
-        (items[0..((len/2)-1)].to_string(), items[(len/2)..len].to_string())
+        (items[0..((len/2))].to_string(), items[(len/2)..len].to_string())
     }
 
     /// Gets common characters present in both compartments.
-    fn get_common_chars(&self) -> HashSet<char> {
+    pub fn get_common_chars(&self) -> HashSet<char> {
         self.compartments.0.chars()
             .filter(|c| self.compartments.1.chars().any( |x| c == &x ))
             .collect::<HashSet<_>>()
@@ -37,7 +36,15 @@ impl Rucksack {
     pub fn get_priority(&self) -> usize {
         self.get_common_chars()
             .iter()
-            .map(|c| PRIORITIES.chars().position(|x| x == *c).unwrap_or(0) )
+            .map(|c| priority::get_priority(c) )
             .sum()
+    }
+
+    pub(crate) fn get_items(&self) -> String {
+        self._items.to_string()
+    }
+
+    pub(crate) fn contains_item(&self, c: &char) -> bool {
+        self._items.contains(*c)
     }
 }
