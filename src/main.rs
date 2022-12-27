@@ -68,4 +68,3 @@ fn main() {
     println!("Biggest sum: {biggest_sum}");
     println!("Sum of top three: {top_3_sum}");
 }
-
