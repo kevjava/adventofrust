@@ -27,7 +27,7 @@ fn part1(lines: &Vec<String>) {
                 .chars()
                 .collect::<HashSet<char>>();
             if chars.len() == 4 {
-                println!("Line: {line}: Marker: {marker}");
+                println!("Part 1: Marker={marker}");
                 break;
             }
             marker += 1;
@@ -47,7 +47,7 @@ fn part2(lines: &Vec<String>) {
                 .chars()
                 .collect::<HashSet<char>>();
             if chars.len() == 14 {
-                println!("Line: {line}: Marker: {marker}");
+                println!("Part 2: Marker={marker}");
                 break;
             }
             marker += 1;
